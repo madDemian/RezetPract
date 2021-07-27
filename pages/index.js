@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css'
 import axios from "axios";
-import UserData from "../components/UserData";
-export default function Home() {
-        const [appState,setAppState] = useState()
-        useEffect(()=> {
-        const apiURL = 'http://localhost:8000/api/content'
-        axios.get(apiURL).then((response) => {
-            const allPosts = response.data;
-            setAppState(allPosts)
-        });
-        },[setAppState])
+import PostList from "../components/PostList";
+export default function Home({posts}) {
+
   return (
     <div className={styles.container}>
-        <UserData appState = {appState}/>
+        <PostList posts={posts}/>
     </div>
   )
+
 }
+export async function getServerSideProps(context) {
+    const apiURL = 'http://localhost:8000/api/content'
+    const posts = await axios.get(apiURL)
+    console.log(posts.data)
+    return {
+        props: {posts:posts.data},
+    }
+}
+

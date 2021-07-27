@@ -1,9 +1,9 @@
 import React from "react";
-import classes from './UserData.module.css'
-function UserData(props) {
+import classes from './PostList.module.css'
+import axios from "axios";
 
-    const { appState } = props
-    if (!appState || appState.length === 0) return <p>Нет данных</p>
+function PostList({posts}) {
+    if (!posts || posts.length === 0) return <p>Нет данных</p>
 
     return (
         <div>
@@ -15,7 +15,7 @@ function UserData(props) {
                 </thead>
                 <tbody>
                 {
-                    appState.map((el) =>
+                    posts.map((el) =>
                         <tr className={classes.blockOfPosts}>
                             <td className={classes.post}>{el.content}</td>
                         </tr>
@@ -27,4 +27,4 @@ function UserData(props) {
     )
 }
 
-export default UserData
+export default PostList
