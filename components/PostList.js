@@ -1,6 +1,6 @@
 import React from "react";
 import classes from './PostList.module.css'
-import axios from "axios";
+
 
 function PostList({posts}) {
     if (!posts || posts.length === 0) return <p>Нет данных</p>

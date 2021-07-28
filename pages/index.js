@@ -13,10 +13,9 @@ export default function Home({posts}) {
 }
 export async function getServerSideProps(context) {
     const apiURL = 'http://localhost:8000/api/content'
-    const posts = await axios.get(apiURL)
-    console.log(posts.data)
+    const {data:posts} = await axios.get(apiURL)
     return {
-        props: {posts:posts.data},
+        props: {posts},
     }
 }
 
