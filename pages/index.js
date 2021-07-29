@@ -1,21 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import styles from '../styles/Home.module.css'
-import axios from "axios";
-import PostList from "../components/PostList";
-export default function Home({posts}) {
 
+import MainLayout from "../components/MainLayout";
+export default function Home() {
   return (
-    <div className={styles.container}>
-        <PostList posts={posts}/>
-    </div>
+      <MainLayout >
+          Hello USER
+      </MainLayout>
   )
-
-}
-export async function getServerSideProps(context) {
-    const apiURL = 'http://localhost:8000/api/content'
-    const {data:posts} = await axios.get(apiURL)
-    return {
-        props: {posts},
-    }
 }
 

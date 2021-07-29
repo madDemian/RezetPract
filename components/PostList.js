@@ -1,13 +1,12 @@
-import React from "react";
 import classes from './PostList.module.css'
 
 
 function PostList({posts}) {
     if (!posts || posts.length === 0) return <p>Нет данных</p>
 
-    return (
+return (
         <div>
-            <table className={classes.table}>
+            <table >
                 <thead>
                 <tr>
                     <th className={classes.name}>Posts</th>
@@ -15,9 +14,12 @@ function PostList({posts}) {
                 </thead>
                 <tbody>
                 {
-                    posts.map((el) =>
-                        <tr className={classes.blockOfPosts}>
-                            <td className={classes.post}>{el.content}</td>
+                    posts.map( el =>
+                        <tr key={el.id} className={classes.blockOfPosts}>
+                            <div className={classes.post}>
+                                <p>{el.title}</p>
+                                <p>{el.content}</p>
+                            </div>
                         </tr>
                     )
                 }
