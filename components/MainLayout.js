@@ -16,7 +16,7 @@ export default function MainLayout({children}){
                             <button>GO TO HOME</button>
                         </a>
                     </Link>
-                    <Link href={'/CreatePost'}>
+                    <Link href={'/create-post'}>
                         <a>
                             <button>CREATE POST</button>
                         </a>
