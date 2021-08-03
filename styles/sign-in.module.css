@@ -1,0 +1,117 @@
+.container {
+    width: 407px;
+    height: 270px;
+    margin: 0 auto;
+    border: 1px solid #949494;
+    box-sizing: border-box;
+    border-radius: 2px;
+    margin-top: 350px;
+}
+
+
+.title h1{
+    width: 62px;
+    height: 23px;
+    left: 690px;
+    top: 392px;
+    margin: 0 auto;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    color: #54C1FF;
+    margin-top: 20px;
+}
+
+
+.userEmailInput{
+    width: 204px;
+    height: 29px;
+    left: 618px;
+    top: 455px;
+    margin-left: 100px;
+    background: #FFFFFF;
+    border: 1px solid #949494;
+    box-sizing: border-box;
+    border-radius: 1px;
+}
+.inputEmailDescr p{
+    width: 82px;
+    height: 12px;
+    left: 618px;
+    top: 441px;
+    margin-left: 100px;
+
+
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: #000000;
+
+}
+
+.userPasswordInput{
+    width: 204px;
+    height: 29px;
+    left: 618px;
+    top: 455px;
+    margin-left: 100px;
+    background: #FFFFFF;
+    border: 1px solid #949494;
+    box-sizing: border-box;
+    border-radius: 1px;
+}
+.inputPasswordDescr p{
+    width: 82px;
+    height: 12px;
+    left: 618px;
+    top: 441px;
+    margin-left: 100px;
+
+
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: #000000;
+
+}
+
+.signInButton{
+    width: 204px;
+    height: 29px;
+    left: 618px;
+    top: 571px;
+    margin-top: 25px;
+    margin-left: 100px;
+
+    background: #54C1FF;
+    border: 1px solid #34B6FF;
+    box-sizing: border-box;
+    border-radius: 1px;
+}
+
+.signUpLink{
+    width: 34px;
+    height: 12px;
+    left: 702px;
+    top: 611px;
+    margin-top: 25px;
+    margin-left: 185px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+
+
+    text-decoration-line: underline;
+
+    color: #54C1FF;
+
+}

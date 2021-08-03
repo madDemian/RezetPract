@@ -1,35 +1,30 @@
-import React,{useEffect} from "react";
-import classes from './PostList.module.css'
-import { useRouter} from "next/router";
+import {useRouter} from "next/router";
+import axios from "axios";
+import {Post} from "./Post";
 
-function PostList({posts,onDelete}) {
+function PostList({posts}) {
     const router = useRouter()
     if (!posts || posts.length === 0)
-        return <p>Нет данных</p>
+        return <p className="p-1 bg-gray-50 dark:bg-gray-900 flex items-center justify-center w-screen">Нет данных</p>
 
-return (
-        <div>
-            <table >
-                <thead>
-                <tr>
-                    <th className={classes.name}>Posts</th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                    posts.map( el =>
-                        <tr key={el.id} className={classes.blockOfPosts}>
-                            <div className={classes.post}>
-                                <p>{el.content}</p>
-                                <button onClick={()=>onDelete(el.id)}>Delete</button>
-                                <button onClick={()=>router.push(`/edit?id=${el.id}`)}>Edit</button>
-                            </div>
-                        </tr>
-                    )
-                }
-                </tbody>
-            </table>
-        </div>
+    const onDelete = async (id) => {
+        const apiURL = `http://localhost:8000/api/posts/${id}`
+        await axios.delete(apiURL)
+        router.reload()
+    }
+    const onEdit = async (content,id) => {
+        const apiURL = `http://localhost:8000/api/posts/${id}`
+        await axios.put(apiURL, {
+            content: content
+        })
+        router.reload()
+
+    }
+
+    const post = posts.map(post => <Post key={post.id} id={post.id} content={post.content} onDelete={onDelete} onEdit={onEdit}/>)
+
+    return (
+        <div className='flex flex-col-reverse '>{post}</div>
     )
 }
 

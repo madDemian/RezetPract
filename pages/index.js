@@ -1,10 +1,18 @@
+import axios from "axios";
+import PostList from "../components/PostList";
 
-import MainLayout from "../components/MainLayout";
-export default function Home() {
+export default function Home({posts}) {
   return (
-      <MainLayout >
-          Hello USER
-      </MainLayout>
+      <PostList posts={posts}/>
   )
+}
+
+export async function getServerSideProps(context) {
+
+    const apiURL = 'http://localhost:8000/api/posts'
+    const {data:posts} = await axios.get(apiURL)
+    return {
+        props: {posts},
+    }
 }
 
