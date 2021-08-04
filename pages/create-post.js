@@ -15,7 +15,7 @@ export default function CreatePostForm(){
         await router.push('/')
     }
     return(
-        <div className="bg-white py-32 px-10 min-h-screen ">
+        <div>
             <div className="bg-gray-100 p-10 md:w-3/4 lg:w-1/2 mx-auto">
                 <form onSubmit={onSubmit}>
                     <div className="flex items-center mb-10">

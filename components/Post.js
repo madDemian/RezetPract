@@ -11,15 +11,16 @@ export function Post({id,content,onDelete,onEdit}){
         setEditMode(false)
     }
     const onCancel = () =>{
+        setPostContent(content)
         setEditMode(false)
     }
 
     const displayedContent = editMode ? (
         <div>
             <form onSubmit={handlePostEdit}>
-            <textarea onChange={e => setPostContent(e.target.value)} value={postContent}></textarea>
-                <div className="text-left">
-                    <button className="py-1 px-3 bg-gray-400 text-white font-bold" type="submit">Submit
+            <textarea onChange={e => setPostContent(e.target.value)} value={postContent} className='w-1/2'></textarea>
+                <div className="text-left space-y-0.5 space-x-0.5">
+                    <button className="py-1 px-3 bg-gray-400 text-white font-bold " type="submit">Submit
                     </button>
                     <button className="py-1 px-3 bg-gray-400 text-white font-bold" onClick={onCancel}>Cancel
                     </button>
@@ -31,7 +32,7 @@ export function Post({id,content,onDelete,onEdit}){
     );
 
     return(
-        <div className="p-1 bg-gray-50 dark:bg-gray-900 flex items-center justify-center w-screen">
+        <div className="p-1 dark:bg-gray-900 flex items-center justify-center w-screen">
             <div className="px-5 py-4 bg-white dark:bg-gray-800 shadow rounded-lg w-3/6">
                 <div className="flex mb-4">
                     <img className="w-12 h-12 rounded-full" src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg'/>
@@ -41,6 +42,7 @@ export function Post({id,content,onDelete,onEdit}){
                         <span className="block text-sm text-gray-500 dark:text-gray-400 font-light leading-snug">email</span>
                     </div>
                     <div >
+
                         <button className='inset-y-0 left-20 w-16'
                                 onClick={()=>onDelete(id)}>Delete</button>
                         <button className='inset-y-0 right-0 w-16'
@@ -52,7 +54,7 @@ export function Post({id,content,onDelete,onEdit}){
 
                 <div className="flex justify-between items-center mt-5">
                     <div className="flex ">
-                        <span className="ml-1 text-gray-500 dark:text-gray-400  font-light"> Likes 0</span>
+                        <span className="ml-1 text-gray-500 dark:text-gray-400 font-light"> Likes 0</span>
                     </div>
                     <div className="ml-1 text-gray-500 dark:text-gray-400 font-light">0 comments</div>
                 </div>

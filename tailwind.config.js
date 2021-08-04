@@ -5,11 +5,14 @@ module.exports = {
     container: {
       center: true,
     },
-    extend: {},
+    extend: {
+
+    },
   },
   variants: {
     extend: {},
-    justifyContent: ['hover', 'focus']
+    justifyContent: ['hover', 'focus'],
+    appearance: ['hover', 'focus'],
   },
   plugins: [],
 }

@@ -1,6 +1,8 @@
 import axios from "axios";
 import {useState} from "react";
 import {Post} from "./Post";
+import CreatePostForm from "../components/CreatePostForm";
+
 
 function PostList({posts}) {
     const [postsList,setPostList] = useState(posts)
@@ -8,6 +10,13 @@ function PostList({posts}) {
     if (!posts || posts.length === 0)
         return <p className="p-1 bg-gray-50 dark:bg-gray-900 flex items-center justify-center w-screen">Нет данных</p>
 
+    const onCreate = async(text) =>{
+        const apiURL = 'http://localhost:8000/api/posts/'
+        const post = await axios.post(apiURL, {
+            content: text
+        })
+        setPostList([...postsList, post.data])
+    }
     const onDelete = async (id) => {
         const apiURL = `http://localhost:8000/api/posts/${id}`
         await axios.delete(apiURL)
@@ -18,13 +27,15 @@ function PostList({posts}) {
         await axios.put(apiURL, {
             content: content
         })
-        setPostList(postsList.filter((post)=>{if(post.id === id){post.content = content} return true }))
-
+        setPostList(postsList.map((post)=>{if(post.id === id){return {...post, content}} return post }))
     }
 
     return (
-        <div className='flex flex-col-reverse '>
-            {postsList.map(post => <Post key={post.id} id={post.id} content={post.content} onDelete={onDelete} onEdit={onEdit}/>)}
+        <div>
+            <CreatePostForm onCreate={onCreate}/>
+            <div className='flex flex-col-reverse'>
+                {postsList.map(post => <Post key={post.id} id={post.id} content={post.content} onDelete={onDelete} onEdit={onEdit}/>)}
+            </div>
         </div>
     )
 }
