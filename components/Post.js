@@ -10,6 +10,9 @@ export function Post({id,content,onDelete,onEdit}){
         onEdit(postContent,id)
         setEditMode(false)
     }
+    const onCancel = () =>{
+        setEditMode(false)
+    }
 
     const displayedContent = editMode ? (
         <div>
@@ -17,6 +20,8 @@ export function Post({id,content,onDelete,onEdit}){
             <textarea onChange={e => setPostContent(e.target.value)} value={postContent}></textarea>
                 <div className="text-left">
                     <button className="py-1 px-3 bg-gray-400 text-white font-bold" type="submit">Submit
+                    </button>
+                    <button className="py-1 px-3 bg-gray-400 text-white font-bold" onClick={onCancel}>Cancel
                     </button>
                 </div>
             </form>
