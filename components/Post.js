@@ -8,6 +8,7 @@ export function Post({id,content,onDelete,onEdit}){
     const handlePostEdit = (e) => {
         e.preventDefault()
         onEdit(postContent,id)
+        setEditMode(false)
     }
 
     const displayedContent = editMode ? (
