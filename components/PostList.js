@@ -12,10 +12,10 @@ function PostList({posts}) {
 
     const onCreate = async(text) =>{
         const apiURL = 'http://localhost:8000/api/posts/'
-        const post = await axios.post(apiURL, {
+        const {data} = await axios.post(apiURL, {
             content: text
         })
-        setPostList([...postsList, post.data])
+        setPostList([data,...postsList])
     }
     const onDelete = async (id) => {
         const apiURL = `http://localhost:8000/api/posts/${id}`
@@ -33,7 +33,7 @@ function PostList({posts}) {
     return (
         <div>
             <CreatePostForm onCreate={onCreate}/>
-            <div className='flex flex-col-reverse'>
+            <div >
                 {postsList.map(post => <Post key={post.id} id={post.id} content={post.content} onDelete={onDelete} onEdit={onEdit}/>)}
             </div>
         </div>
