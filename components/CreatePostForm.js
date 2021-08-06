@@ -1,12 +1,12 @@
 import {useState} from "react";
 
 function CreatePostForm({onCreate}){
-    const [text ,setText] = useState('')
+    const [content ,setContent] = useState('')
 
     const onSubmit = async (e)=>{
         e.preventDefault()
-        onCreate(text)
-        setText('')
+        onCreate(content)
+        setContent('')
     }
     return(
         <div >
@@ -15,8 +15,8 @@ function CreatePostForm({onCreate}){
                     <div className="flex items-center mb-2">
                         <textarea type="text" id="twitter" name="twitter" placeholder="Tweet"
                                   className="flex-1 py-2 border-b-2 border-gray-400 text-gray-600 placeholder-gray-400"
-                                  onChange={(event => setText(event.target.value))}
-                                  value={text}
+                                  onChange={(event => setContent(event.target.value))}
+                                  value={content}
                                   required="required"/>
                     </div>
                     <div className="text-right">

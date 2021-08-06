@@ -1,6 +1,8 @@
 import {useState} from "react";
 
 export function Post({id,content,onDelete,onEdit}){
+
+
     const [postContent,setPostContent] = useState(content)
 
     const [editMode, setEditMode] = useState(false)
