@@ -3,7 +3,7 @@ import {useState} from "react";
 function CreatePostForm({onCreate}){
     const [content ,setContent] = useState('')
 
-    const onSubmit = async (e)=>{
+    const onSubmit =(e)=>{
         e.preventDefault()
         onCreate(content)
         setContent('')
