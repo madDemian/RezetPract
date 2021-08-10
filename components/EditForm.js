@@ -1,12 +1,14 @@
-function EditForm ({onCancel,handlePostEdit,setPostContent,postContent}){
+import {useState} from "react";
 
+function EditForm ({onCancel,onEdit,content}){
+    const [editableContent,setEditableContent] = useState(content)
     return (
         <div>
-            <form onSubmit={handlePostEdit}>
-                <textarea onChange={e => setPostContent(e.target.value)} value={postContent} className='w-1/2'
+            <form>
+                <textarea onChange={e => setEditableContent(e.target.value)} value={editableContent} className='w-1/2'
                           required='required'></textarea>
                 <div className="text-left space-y-0.5 space-x-0.5">
-                    <button className="py-1 px-3 bg-gray-400 text-white font-bold " type="submit">Submit
+                    <button className="py-1 px-3 bg-gray-400 text-white font-bold " type="submit" onClick={()=>onEdit(editableContent)}>Save
                     </button>
                     <button className="py-1 px-3 bg-gray-400 text-white font-bold" onClick={onCancel}>Cancel
                     </button>

@@ -2,21 +2,14 @@ import {useState} from "react";
 import EditForm from "./EditForm";
 
 export function Post({id,content,onDelete,onEdit}){
-    const [postContent,setPostContent] = useState(content)
     const [editMode, setEditMode] = useState(false)
 
-    const handlePostEdit = (e) => {
-        e.preventDefault()
-        onEdit(postContent,id)
-        setEditMode(false)
-    }
     const onCancel = () =>{
-        setPostContent(content)
         setEditMode(false)
     }
 
     const displayedContent = editMode ? (
-        <EditForm onCancel={onCancel} handlePostEdit={handlePostEdit} content={content} postContent={postContent} setPostContent={setPostContent}/>
+        <EditForm onCancel={onCancel} onEdit={onEdit} content={content} />
     ) : (
         <p>{content}</p>
     );

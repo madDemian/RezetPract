@@ -1,11 +1,11 @@
 import {useState} from "react";
 import CreatePostForm from "../components/CreatePostForm";
 import apiClient from '../axios.config'
-import ListOfPosts from "./ListOfPosts";
+import PostsList from "./PostsList";
 
-function PostList({posts}) {
+function Main({posts}) {
 
-    const [postsList,setPostList] = useState(posts || [])
+    const [postsList,setPostList] = useState(posts)
 
     const onCreate = async(text) =>{
         const {data:post} = await apiClient.post('posts', {
@@ -23,7 +23,7 @@ function PostList({posts}) {
         })
         setPostList(postsList.map(post => post.id === id ? {...post, content} : post))
     }
-    const displayedContent = postsList.length ? <ListOfPosts postsList={postsList} onDelete={onDelete} onEdit={onEdit}/> :
+    const displayedContent = postsList.length ? <PostsList postsList={postsList} onDelete={onDelete} onEdit={onEdit}/> :
         <p className="p-1 bg-gray-50 dark:bg-gray-900 flex items-center justify-center md:w-3/12 lg:w-1/2 mx-auto">No posts</p>
 
     return (
@@ -38,4 +38,4 @@ function PostList({posts}) {
     )
 }
 
-export default PostList
+export default Main

@@ -1,9 +1,9 @@
 import axios from "axios";
-import PostList from "../components/PostList";
+import Main from "../components/Main";
 
 export default function Home({posts}) {
   return (
-      <PostList posts={posts}/>
+      <Main posts={posts}/>
   )
 }
 

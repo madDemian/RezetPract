@@ -20,7 +20,7 @@ function CreatePostForm({onCreate}){
                                   required="required"/>
                     </div>
                     <div className="text-right">
-                        <button className="py-3 px-8 bg-gray-500 text-white font-bold" type="submit">Submit</button>
+                        <button className="py-3 px-8 bg-gray-500 text-white font-bold" type="submit">Tweet</button>
                     </div>
                 </form>
             </div>
