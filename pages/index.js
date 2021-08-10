@@ -1,16 +1,43 @@
-import axios from "axios";
-import Main from "../components/Main";
+import {useState} from "react";
+import CreatePostForm from "../components/CreatePostForm";
+import apiClient from '../libs/apiClient'
+import PostsList from "../components/PostsList";
 
 export default function Home({posts}) {
-  return (
-      <Main posts={posts}/>
-  )
+    const [postsList,setPostList] = useState(posts)
+    const onCreate = async(text) =>{
+        const {data:post} = await apiClient.post('posts', {
+            content: text
+        })
+        setPostList([post,...postsList])
+    }
+    const onDelete = async (id) => {
+        await apiClient.delete(`posts/${id}`)
+        setPostList(postsList.filter((post)=>post.id !== id))
+    }
+    const onEdit = async (content,id) => {
+        await apiClient.put(`posts/${id}`, {
+            content: content
+        })
+        setPostList(postsList.map(post => post.id === id ? {...post, content} : post))
+    }
+    const displayedContent = postsList.length ? <PostsList postsList={postsList} onDelete={onDelete} onEdit={onEdit}/> :
+        <p className="p-1 bg-gray-50 dark:bg-gray-900 flex items-center justify-center md:w-3/12 lg:w-1/2 mx-auto">No posts</p>
+
+    return (
+        <div>
+            <CreatePostForm onCreate={onCreate}/>
+            <div >
+                {
+                    displayedContent
+                }
+            </div>
+        </div>
+    )
 }
 
 export async function getServerSideProps(context) {
-
-    const apiURL = 'http://localhost:8000/api/posts'
-    const {data:posts} = await axios.get(apiURL)
+    const {data:posts} = await apiClient.get('posts')
     return {
         props: {posts},
     }
