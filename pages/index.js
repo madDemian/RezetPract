@@ -2,8 +2,12 @@ import {useState} from "react";
 import CreatePostForm from "../components/CreatePostForm";
 import apiClient from '../libs/apiClient'
 import PostsList from "../components/PostsList";
+import {withoutAuth} from "../hof/withoutAuth";
 
 export default function Home({posts}) {
+
+    return <div>Ok</div>
+
     const [postsList,setPostList] = useState(posts)
     const onCreate = async(text) =>{
         const {data:post} = await apiClient.post('posts', {
@@ -36,10 +40,13 @@ export default function Home({posts}) {
     )
 }
 
-export async function getServerSideProps(context) {
-    const {data:posts} = await apiClient.get('posts')
-    return {
-        props: {posts},
+export const getServerSideProps = withoutAuth(function (context) {
+    {
+        const {data:posts} = apiClient.get('posts')
+        return {
+            props: {posts},
+        }
     }
-}
+})
+
 
