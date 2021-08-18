@@ -9,7 +9,11 @@ export function Post({id,content,onDelete,onEdit}){
     }
 
     const displayedContent = editMode ? (
-        <EditForm onCancel={onCancel} onEdit={onEdit} content={content} />
+        <EditForm onCancel={onCancel}
+                  onEdit={(content, id) => {
+            setEditMode(false)
+            onEdit(content, id)
+        }}        content={content} id={id}/>
     ) : (
         <p>{content}</p>
     );
