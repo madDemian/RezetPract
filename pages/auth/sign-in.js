@@ -1,7 +1,7 @@
 import SignInForm from "../../components/auth/SignInForm";
 import {useRouter} from "next/router";
 import {useContext, useEffect, useState} from "react";
-import {AuthContext} from "../../context/authContext";
+import {AuthContext} from "../../context/AuthContext";
 
 export default function SignIn(){
 

@@ -4,7 +4,7 @@ import PostsList from "../components/PostsList";
 import RegistrationLoginWindow from "../components/auth/RegistrationLoginWindow";
 import * as request from '../axios/requests'
 import SignOut from "../components/auth/SignOut";
-import {AuthContext} from "../context/authContext";
+import {AuthContext} from "../context/AuthContext";
 import {useRouter} from "next/router";
 
 export default function Home({posts}) {
@@ -28,7 +28,6 @@ export default function Home({posts}) {
 
     const onSignOut = async () => {
         await auth.signOut()
-        return router.reload()
     }
 
     const displayedContent = postsList.length ? <PostsList postsList={postsList} onDelete={onDelete} onEdit={onEdit}/> :

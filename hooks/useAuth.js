@@ -8,19 +8,22 @@ export function useAuth() {
     const [authenticated, setAuthenticated] = useState(!!cookie.get('token'))
     const [user, setUser] = useState(null)
 
+    const fetchProfile = async () => {
+        const {data:{currentUser}} = await request.auth.authMe()
+        setUser(currentUser)
+    }
+
       const signIn = async (credentials) => {
-        const {data:{user,token}} = await request.auth.signIn(credentials)
+        const {data:{token}} = await request.auth.signIn(credentials)
         cookie.set('token',token)
         setAuthenticated(true)
-        setUser(user)
         return router.push('/')
     }
 
     const signUp = async (credentials) => {
-        const {data:{user,token}} = await request.auth.signUp(credentials)
+        const {data:{token}} = await request.auth.signUp(credentials)
         cookie.set('token',token)
         setAuthenticated(true)
-        setUser(user)
         return router.push('/')
     }
 
@@ -30,6 +33,19 @@ export function useAuth() {
         setAuthenticated(false)
         setUser(null)
     }
+
+    useEffect(()=>{
+        if(authenticated){
+            (async ()=>{
+                try{
+                    await fetchProfile()
+                }catch (e){
+                    setAuthenticated(false)
+                    setUser(null)
+                }
+            })()
+        }
+    },[authenticated])
 
 
     return {

@@ -7,6 +7,7 @@ export const AuthContext = React.createContext({
     user:null,
     setUser:()=>{},
 
+    fetchProfile:()=>{},
 
     signIn:()=>{},
     signUp:()=>{},

@@ -1,17 +1,21 @@
 import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
-import cookie from "js-cookie";
+import {useContext, useEffect, useState} from "react";
+import {AuthContext} from "../../context/AuthContext";
+
 
 const RegistrationLoginWindow = () => {
     const router = useRouter()
-
+    const auth = useContext(AuthContext)
     const [displayWindow,setDisplayWindow] = useState("bg-gray-400 text-center fixed inset-x-0 bottom-0")
 
     useEffect(()=>{
-        if(cookie.get('token')){
+        if(auth.authenticated){
             setDisplayWindow('hidden')
+        }else{
+            setDisplayWindow("bg-gray-400 text-center fixed inset-x-0 bottom-0")
         }
-    },[])
+
+    },[auth.authenticated])
 
     return (
         <div className={displayWindow}>
