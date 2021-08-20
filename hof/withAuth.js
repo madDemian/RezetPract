@@ -1,4 +1,5 @@
 import apiClient from "../libs/apiClient";
+import * as request from "../axios/requests"
 
 export const withAuth = (getServerSidePropsFunc) => {
     return async (ctx) => {
@@ -15,8 +16,7 @@ export const withAuth = (getServerSidePropsFunc) => {
         apiClient.setToken(token)
 
         try {
-           await apiClient.get('/authMe')
-
+           await request.auth.authMe()
             return getServerSidePropsFunc ?
                 await getServerSidePropsFunc(ctx)
                 : { props: {}}

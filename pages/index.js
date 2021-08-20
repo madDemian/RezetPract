@@ -1,11 +1,16 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import CreatePostForm from "../components/CreatePostForm";
 import PostsList from "../components/PostsList";
 import RegistrationLoginWindow from "../components/auth/RegistrationLoginWindow";
 import * as request from '../axios/requests'
+import SignOut from "../components/auth/SignOut";
+import {AuthContext} from "../context/authContext";
+import {useRouter} from "next/router";
 
 export default function Home({posts}) {
 
+    const router = useRouter()
+    const auth = useContext(AuthContext)
     const [postsList, setPostList] = useState(posts)
 
     const onCreate = async (text) => {
@@ -20,6 +25,12 @@ export default function Home({posts}) {
         await request.posts.editPost(content,id)
         setPostList(postsList.map(post => post.id === id ? {...post, content} : post))
     }
+
+    const onSignOut = async () => {
+        await auth.signOut()
+        return router.reload()
+    }
+
     const displayedContent = postsList.length ? <PostsList postsList={postsList} onDelete={onDelete} onEdit={onEdit}/> :
         <p className="p-1 bg-gray-50 dark:bg-gray-900 flex items-center justify-center md:w-3/12 lg:w-1/2 mx-auto">No
             posts</p>
@@ -27,6 +38,7 @@ export default function Home({posts}) {
     return (
         <div>
             <RegistrationLoginWindow />
+            <SignOut onSignOut={onSignOut}/>
             <CreatePostForm onCreate={onCreate}/>
             <div>
                 {

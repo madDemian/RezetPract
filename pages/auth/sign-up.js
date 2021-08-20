@@ -1,31 +1,25 @@
 import SignUpForm from "../../components/auth/SignUpForm";
-import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
-import cookie from "js-cookie";
-import * as request from '../../axios/requests'
-
+import {useState,useEffect,useContext} from "react";
+import {AuthContext} from "../../context/authContext";
 
 export default function SignUp(){
-    const router = useRouter()
 
-    const [validToken,setValidToken] = useState(false)
+    const router = useRouter()
+    const auth = useContext(AuthContext)
+    const [loading,setLoading] = useState(true)
 
     useEffect(()=>{
-        if(cookie.get('token')){
+        if(auth.authenticated){
             return router.push('/')
         }
-        setValidToken(true)
+        setLoading(false)
     },[])
 
-    const onSignUp = async (credentials)=> {
-        const {data:{token}} = await request.auth.signUp(credentials)
-        cookie.set('token',token)
-        return router.push('/')
-    }
-
+    const onSignUp = auth.signUp
     return(
         <>
-            {validToken &&
+            {loading ? <div className='text-center'>Loading...</div>:
             <SignUpForm onSignUp={onSignUp}/>}
         </>
     )

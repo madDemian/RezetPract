@@ -27,7 +27,6 @@ export const posts = {
 }
 
 export const user = {
-
     getUsers(id) {
         return apiClient.get('/posts/'+id)
     }
@@ -40,5 +39,11 @@ export const auth = {
     },
     signUp(credentials){
        return apiClient.post('/register',credentials)
+    },
+    signOut(){
+        return apiClient.get('/logout')
+    },
+    authMe(){
+        return apiClient.get('/authMe')
     }
 }
