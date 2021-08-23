@@ -9,7 +9,6 @@ function CreatePostForm({onCreate}){
         setContent('')
     }
     return(
-        <div >
             <div className="bg-gray-50 p-5 md:w-3/12 lg:w-1/2 mx-auto">
                 <form onSubmit={onSubmit}>
                     <div className="flex items-center mb-2">
@@ -24,8 +23,6 @@ function CreatePostForm({onCreate}){
                     </div>
                 </form>
             </div>
-        </div>
-
     )
 }
 

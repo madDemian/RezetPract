@@ -6,13 +6,13 @@ import {AuthContext} from "../../context/AuthContext";
 const RegistrationLoginWindow = () => {
     const router = useRouter()
     const auth = useContext(AuthContext)
-    const [displayWindow,setDisplayWindow] = useState("bg-gray-400 text-center fixed inset-x-0 bottom-0")
+    const [displayWindow,setDisplayWindow] = useState("bg-gray-400 text-center fixed inset-x-0 bottom-0 z-20")
 
     useEffect(()=>{
         if(auth.authenticated){
             setDisplayWindow('hidden')
         }else{
-            setDisplayWindow("bg-gray-400 text-center fixed inset-x-0 bottom-0")
+            setDisplayWindow("bg-gray-400 text-center fixed inset-x-0 bottom-0 z-20")
         }
 
     },[auth.authenticated])
