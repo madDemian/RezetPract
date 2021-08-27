@@ -1,19 +1,22 @@
 import {Menu, Transition} from '@headlessui/react'
 import {Fragment, useContext, useEffect, useState} from 'react'
 import {AuthContext} from "../../context/AuthContext";
+import {useRouter} from "next/router";
 
 export default function IconProfile({onSignOut}) {
+    const router = useRouter()
+
     const auth = useContext(AuthContext)
 
-    const [displayWindow,setDisplayWindow] = useState("fixed bottom-0 left-72")
+    const [displayWindow, setDisplayWindow] = useState("fixed bottom-0 left-72")
 
-    useEffect(()=>{
-        if(!auth.authenticated){
+    useEffect(() => {
+        if (!auth.authenticated) {
             setDisplayWindow('hidden')
-        }else{
+        } else {
             setDisplayWindow("fixed bottom-0 left-72")
         }
-    },[auth.authenticated])
+    }, [auth.authenticated])
     return (
         <div className={displayWindow}>
             <Menu as="div" className="relative inline-block text-left ">
@@ -25,9 +28,7 @@ export default function IconProfile({onSignOut}) {
                                 src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg'
                                 alt=""
                             />
-
                         </div>
-
                     </Menu.Button>
                 </div>
                 <Transition
@@ -44,26 +45,26 @@ export default function IconProfile({onSignOut}) {
                         <div className="px-1 py-1 ">
                             <Menu.Item>
                                 {({active}) => (
-                                    <button
-                                        className={`${
-                                            active ? 'bg-gray-400 text-white' : 'text-gray-900'
-                                        } group flex rounded-md items-center w-full px-0 py-0 text-sm`}
-
-                                    >
-                                        {active ? (
-                                            <EditActiveIcon
-                                                className="w-5 h-5 mr-2"
-                                                aria-hidden="true"
-                                            />
-                                        ) : (
-                                            <EditInactiveIcon
-                                                className="w-5 h-5 mr-2"
-                                                aria-hidden="true"
-                                            />
-                                        )}
-                                        Profile
+                                        <button
+                                            className={`${
+                                                active ? 'bg-gray-400 text-white' : 'text-gray-900'
+                                            } group flex rounded-md items-center w-full px-0 py-0 text-sm`}
+                                            onClick={()=>{router.push(`/profile/${auth.user.id}`)}}
+                                        >
+                                {active ? (
+                                    <EditActiveIcon
+                                    className="w-5 h-5 mr-2"
+                                    aria-hidden="true"
+                                    />
+                                    ) : (
+                                    <EditInactiveIcon
+                                    className="w-5 h-5 mr-2"
+                                    aria-hidden="true"
+                                    />
+                                    )}
+                                    Profile
                                     </button>
-                                )}
+                                    )}
                             </Menu.Item>
                         </div>
 
@@ -74,7 +75,9 @@ export default function IconProfile({onSignOut}) {
                                         className={`${
                                             active ? 'bg-gray-400 text-white' : 'text-gray-900'
                                         } group flex rounded-md items-center w-full px-0 py-0 text-sm`}
-                                        onClick={()=>{onSignOut()}}
+                                        onClick={() => {
+                                            onSignOut()
+                                        }}
                                     >
                                         {active ? (
                                             <DeleteActiveIcon
@@ -95,7 +98,7 @@ export default function IconProfile({onSignOut}) {
                     </Menu.Items>
                 </Transition>
             </Menu>
-            <div>{[auth.user?.first_name+' '+auth.user?.last_name]}</div>
+            <div>{[auth.user?.first_name + ' ' + auth.user?.last_name]}</div>
         </div>
     )
 }
