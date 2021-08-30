@@ -1,6 +1,6 @@
 import * as request from '../../axios/requests'
 import PostsList from "../../components/Post/PostsList";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import CreatePostForm from "../../components/Post/CreatePostForm";
 import MainLayout from "../../components/Layout/MainLayout";
 import {AuthContext} from "../../context/AuthContext";
@@ -9,6 +9,8 @@ import ProfileCard from "../../components/ProfileCard";
 export default function Profile({userInfo,posts}) {
     const [postsList, setPostList] = useState(posts)
     const {user} = useContext(AuthContext)
+
+    useEffect(()=> {setPostList(posts)}, [userInfo])
 
     const onCreate = async (text) => {
         const {data: {data: post}} = await request.posts.createPost(text)
