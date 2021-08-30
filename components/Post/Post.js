@@ -25,7 +25,7 @@ export function Post({onDelete,onEdit, userAuthed,post,user}){
         <>{post.content}</>
     )
 
-    const dropdown = userAuthed?.id === post.user_id && <Dropdown onDelete={onDelete} id={post.id} showEditMode={showEditMode}/>
+    const dropdown = userAuthed?.id === post.user.id && <Dropdown onDelete={onDelete} id={post.id} showEditMode={showEditMode}/>
 
     return(
         <div className="p-1 dark:bg-gray-900 flex items-center justify-center w-screen">
