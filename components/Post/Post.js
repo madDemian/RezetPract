@@ -4,7 +4,7 @@ import Dropdown from "../Layout/Dropdown";
 import Link from 'next/link'
 
 
-export function Post({onDelete,onEdit, userAuthed,post,user}){
+export function Post({onDelete,onEdit, userAuthed,post}){
     const [editMode, setEditMode] = useState(false)
 
     const onCancel = () =>{
@@ -17,9 +17,9 @@ export function Post({onDelete,onEdit, userAuthed,post,user}){
 
     const displayedContent = editMode ? (
         <EditForm onCancel={onCancel}
-                  onEdit={(content, id) => {
+                  onEdit={(content) => {
             setEditMode(false)
-            onEdit(content, id)
+            onEdit(content, post.id)
         }} content={post.content} id={post.id}/>
     ) : (
         <>{post.content}</>

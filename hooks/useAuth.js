@@ -9,7 +9,7 @@ export function useAuth() {
     const [user, setUser] = useState(null)
 
     const fetchProfile = async () => {
-        const {data:{data:currentUser}} = await request.auth.authMe()
+        const {data:{data:currentUser}} = await request.auth.me()
         setUser(currentUser)
     }
 

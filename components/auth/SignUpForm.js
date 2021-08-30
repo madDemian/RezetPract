@@ -4,10 +4,21 @@ import {useState} from "react";
 
 function SignUpForm({onSignUp}){
     const router = useRouter()
-    const [inputForm,setInputForm] = useState({first_name:'',last_name:'',user_name:'',email:'',password:'',password_confirmation:''})
-    const updateFormInputs = e => {
-        e.persist()
-        setInputForm(prevState=>({...prevState,[e.target.name]:e.target.value}))
+
+    const [firstName,setFirstName] = useState('')
+    const [lastName,setLastName] = useState('')
+    const [userName,setUserName] = useState('')
+    const [email,setEmail] = useState('')
+    const [password,setPassword] = useState('')
+    const [passwordConfirmation,setPasswordConfirmation] = useState('')
+
+    const inputForm = {
+        first_name:firstName,
+        last_name:lastName,
+        user_name:userName,
+        email:email,
+        password:password,
+        password_confirmation:passwordConfirmation
     }
 
     return (
@@ -28,7 +39,7 @@ function SignUpForm({onSignUp}){
                                placeholder={'First name'}
                                name='first_name'
                                required='required'
-                               onChange={updateFormInputs}
+                               onChange={event => {setFirstName(event.target.value)}}
                         />
                         <label className={classes.inputFieldsDescr}>
                             <p>Last Name</p>
@@ -37,7 +48,7 @@ function SignUpForm({onSignUp}){
                                placeholder={'Last name'}
                                name='last_name'
                                required='required'
-                               onChange={updateFormInputs}
+                               onChange={event => {setLastName(event.target.value)}}
                         />
                         <label className={classes.inputFieldsDescr}>
                             <p>Username</p>
@@ -46,7 +57,7 @@ function SignUpForm({onSignUp}){
                                placeholder='Username'
                                name='user_name'
                                required='required'
-                               onChange={updateFormInputs}
+                               onChange={event => {setUserName(event.target.value)}}
                         />
                         <label className={classes.inputFieldsDescr}>
                             <p>Email</p>
@@ -56,7 +67,7 @@ function SignUpForm({onSignUp}){
                                name='email'
                                type='email'
                                required='required'
-                               onChange={updateFormInputs}
+                               onChange={event => {setEmail(event.target.value)}}
                         />
                         <label className={classes.inputFieldsDescr}>
                             <p>Password</p>
@@ -66,7 +77,7 @@ function SignUpForm({onSignUp}){
                                name='password'
                                type='password'
                                required='required'
-                               onChange={updateFormInputs}
+                               onChange={event => {setPassword(event.target.value)}}
                         />
                         <label className={classes.inputFieldsDescr}>
                             <p>Confirm password</p>
@@ -76,7 +87,7 @@ function SignUpForm({onSignUp}){
                                name='password_confirmation'
                                type='password'
                                required='required'
-                               onChange={updateFormInputs}
+                               onChange={event => {setPasswordConfirmation(event.target.value)}}
                         />
                         <button className={classes.signUpButton} type='submit'>Sign Up</button>
                         <p><a className={classes.signInLink} onClick={()=>(router.push('http://localhost:3000/auth/sign-in'))}>Sign In</a></p>

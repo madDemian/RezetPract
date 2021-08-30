@@ -1,24 +1,12 @@
 import {Menu, Transition} from '@headlessui/react'
-import {Fragment, useContext, useEffect, useState} from 'react'
-import {AuthContext} from "../../context/AuthContext";
+import {Fragment} from 'react'
 import {useRouter} from "next/router";
 
-export default function IconProfile({onSignOut}) {
+export default function IconProfile({onSignOut,user}) {
     const router = useRouter()
 
-    const auth = useContext(AuthContext)
-
-    const [displayWindow, setDisplayWindow] = useState("fixed bottom-0 left-72")
-
-    useEffect(() => {
-        if (!auth.authenticated) {
-            setDisplayWindow('hidden')
-        } else {
-            setDisplayWindow("fixed bottom-0 left-72")
-        }
-    }, [auth.authenticated])
     return (
-        <div className={displayWindow}>
+        <div className="fixed bottom-0 left-72">
             <Menu as="div" className="relative inline-block text-left ">
                 <div>
                     <Menu.Button className="inline-flex justify-center px-4 ">
@@ -49,15 +37,15 @@ export default function IconProfile({onSignOut}) {
                                             className={`${
                                                 active ? 'bg-gray-400 text-white' : 'text-gray-900'
                                             } group flex rounded-md items-center w-full px-0 py-0 text-sm`}
-                                            onClick={()=>{router.push(`/profile/${auth.user.id}`)}}
+                                            onClick={()=>{router.push(`/profile/${user.id}`)}}
                                         >
                                 {active ? (
-                                    <EditActiveIcon
+                                    <ProfileActiveIcon
                                     className="w-5 h-5 mr-2"
                                     aria-hidden="true"
                                     />
                                     ) : (
-                                    <EditInactiveIcon
+                                    <ProfileInactiveIcon
                                     className="w-5 h-5 mr-2"
                                     aria-hidden="true"
                                     />
@@ -80,12 +68,12 @@ export default function IconProfile({onSignOut}) {
                                         }}
                                     >
                                         {active ? (
-                                            <DeleteActiveIcon
+                                            <SignOutActiveIcon
                                                 className="w-5 h-5 mr-2 text-violet-400"
                                                 aria-hidden="true"
                                             />
                                         ) : (
-                                            <DeleteInactiveIcon
+                                            <SignOutInactiveIcon
                                                 className="w-5 h-5 mr-2 text-violet-400"
                                                 aria-hidden="true"
                                             />
@@ -98,12 +86,12 @@ export default function IconProfile({onSignOut}) {
                     </Menu.Items>
                 </Transition>
             </Menu>
-            <div>{[auth.user?.first_name + ' ' + auth.user?.last_name]}</div>
+            <div>{[user?.first_name + ' ' + user?.last_name]}</div>
         </div>
     )
 }
 
-function EditInactiveIcon(props) {
+function ProfileInactiveIcon(props) {
     return (
         <svg
             {...props}
@@ -121,7 +109,7 @@ function EditInactiveIcon(props) {
     )
 }
 
-function EditActiveIcon(props) {
+function ProfileActiveIcon(props) {
     return (
         <svg
             {...props}
@@ -139,7 +127,7 @@ function EditActiveIcon(props) {
     )
 }
 
-function DeleteInactiveIcon(props) {
+function SignOutInactiveIcon(props) {
     return (
         <svg
             {...props}
@@ -162,7 +150,7 @@ function DeleteInactiveIcon(props) {
     )
 }
 
-function DeleteActiveIcon(props) {
+function SignOutActiveIcon(props) {
     return (
         <svg
             {...props}

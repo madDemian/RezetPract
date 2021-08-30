@@ -16,7 +16,7 @@ export const withAuth = (getServerSidePropsFunc) => {
         apiClient.setToken(token)
 
         try {
-           await request.auth.authMe()
+           await request.auth.me()
             return getServerSidePropsFunc ?
                 await getServerSidePropsFunc(ctx)
                 : { props: {}}

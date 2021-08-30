@@ -1,21 +1,9 @@
-import {useContext, useEffect, useState} from "react";
-import {AuthContext} from "../../context/AuthContext";
 import Link from 'next/link'
 
 const Navbar = () => {
-    const auth = useContext(AuthContext)
-    const [displayWindow,setDisplayWindow] = useState("fixed dark:bg-gray-800")
-
-    useEffect(()=>{
-        if(!auth.authenticated){
-            setDisplayWindow('hidden')
-        }else{
-            setDisplayWindow("fixed dark:bg-gray-800")
-        }
-    },[auth.authenticated])
 
     return (
-        <div className={displayWindow}>
+        <div className="fixed dark:bg-gray-800">
             <div className="flex flex-col sm:flex-row sm:justify-around">
                 <div className="w-72 h-screen">
                     <nav className="mt-10 px-6 ">

@@ -43,7 +43,7 @@ export const auth = {
     signOut(){
         return apiClient.get('/logout')
     },
-    authMe(){
+    me(){
         return apiClient.get('/authMe')
     }
 }

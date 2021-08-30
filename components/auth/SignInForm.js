@@ -4,10 +4,11 @@ import {useState} from "react";
 
 function SignInForm({onSignIn}){
     const router = useRouter()
-    const [formInput,setFormInput] = useState({email:'',password:''})
-    const updateFormInput = e => {
-        e.persist()
-        setFormInput(prevState =>({...prevState,[e.target.name]:e.target.value}))
+    const [email,setEmail] = useState('')
+    const [password,setPassword] = useState('')
+    const formInput = {
+        email:email,
+        password:password
     }
     return(
         <div>
@@ -28,7 +29,7 @@ function SignInForm({onSignIn}){
                                type='email'
                                name='email'
                                required='required'
-                               onChange={updateFormInput}
+                               onChange={event => setEmail(event.target.value)}
 
                         />
                         <label className={classes.inputPasswordDescr}>
@@ -39,7 +40,7 @@ function SignInForm({onSignIn}){
                                type='password'
                                name='password'
                                required='required'
-                               onChange={updateFormInput}
+                               onChange={event => setPassword(event.target.value)}
                         />
                         <button className={classes.signInButton} type='submit'>Sign In</button>
 

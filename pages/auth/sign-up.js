@@ -16,17 +16,12 @@ export default function SignUp(){
         setLoading(false)
     },[])
 
-    const onSignUp = auth.signUp
-    return(
-        <>
-            {loading ? <div className='text-center'>Loading...</div>:
-            <SignUpForm onSignUp={onSignUp}/>}
-        </>
-    )
+    return loading ? <div className='text-center'>Loading...</div>: <SignUpForm onSignUp={auth.signUp}/>
+
 }
 
-export function getServerSideProps (){
+export async function getStaticProps(context) {
     return {
-        props:{}
+        props: {}
     }
 }

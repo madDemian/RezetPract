@@ -1,24 +1,10 @@
 import {useRouter} from "next/router";
-import {useContext, useEffect, useState} from "react";
-import {AuthContext} from "../../context/AuthContext";
-
 
 const RegistrationLoginWindow = () => {
     const router = useRouter()
-    const auth = useContext(AuthContext)
-    const [displayWindow,setDisplayWindow] = useState("bg-gray-400 text-center fixed inset-x-0 bottom-0 z-20")
-
-    useEffect(()=>{
-        if(auth.authenticated){
-            setDisplayWindow('hidden')
-        }else{
-            setDisplayWindow("bg-gray-400 text-center fixed inset-x-0 bottom-0 z-20")
-        }
-
-    },[auth.authenticated])
 
     return (
-        <div className={displayWindow}>
+        <div className="bg-gray-400 text-center fixed inset-x-0 bottom-0 z-20">
             <div className="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between flex-wrap">
                     <div className="w-0 flex-1 flex items-center">

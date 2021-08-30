@@ -16,20 +16,13 @@ export default function SignIn(){
        setLoading(false)
     },[])
 
-    const onSignIn = auth.signIn
 
-    return(
-        <>
-            { loading ?
-                <div className='text-center'>Loading...</div>:
-            <SignInForm onSignIn={onSignIn}/>
-            }
-        </>
-    )
+
+    return  loading ? <div className='text-center'>Loading...</div> : <SignInForm onSignIn={auth.signIn}/>
 }
 
-export function getServerSideProps(){
+export async function getStaticProps(context) {
     return {
-        props:{}
+        props: {}
     }
 }
