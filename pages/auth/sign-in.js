@@ -14,14 +14,14 @@ export default function SignIn(){
            return router.push('/')
        }
        setLoading(false)
-    },[])
+    },[auth.authenticated])
 
 
 
     return  loading ? <div className='text-center'>Loading...</div> : <SignInForm onSignIn={auth.signIn}/>
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
     return {
         props: {}
     }

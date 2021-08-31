@@ -27,7 +27,7 @@ export default function Dropdown({onDelete,id,showEditMode}) {
                                         className={`${
                                             active ? 'bg-gray-400 text-white' : 'text-gray-900'
                                         } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                                        onClick={()=>{showEditMode()}}
+                                        onClick={showEditMode}
                                         >
                                         {active ? (
                                             <EditActiveIcon

@@ -1,35 +1,30 @@
 import {useState, useEffect} from "react";
 import cookie from "js-cookie";
-import * as request from '../axios/requests'
-import {useRouter} from "next/router";
+import API from '../axios/api/index'
 
 export function useAuth() {
-    const router = useRouter()
     const [authenticated, setAuthenticated] = useState(!!cookie.get('token'))
     const [user, setUser] = useState(null)
 
     const fetchProfile = async () => {
-        const {data:{data:currentUser}} = await request.auth.me()
+        const {data:{data:currentUser}} = await API.auth.me()
         setUser(currentUser)
     }
 
     const signIn = async (credentials) => {
-        const {data: {token}} = await request.auth.signIn(credentials)
+        const {data: {token}} = await API.auth.signIn(credentials)
         cookie.set('token', token)
         setAuthenticated(true)
-        return router.push('/')
-
     }
 
     const signUp = async (credentials) => {
-        const {data: {token}} = await request.auth.signUp(credentials)
+        const {data: {token}} = await API.auth.signUp(credentials)
         cookie.set('token', token)
         setAuthenticated(true)
-        return router.push('/')
     }
 
     const signOut = async () => {
-        await request.auth.signOut()
+        await API.auth.signOut()
         cookie.remove('token')
         setAuthenticated(false)
         setUser(null)
@@ -47,15 +42,6 @@ export function useAuth() {
             })()
         }
     }, [authenticated])
-
-    useEffect(()=>{
-        (async ()=>{
-            if(authenticated){
-                await fetchProfile()
-            }
-        })()
-    },[authenticated])
-
 
     return {
         authenticated,

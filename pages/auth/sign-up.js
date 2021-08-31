@@ -14,13 +14,13 @@ export default function SignUp(){
             return router.push('/')
         }
         setLoading(false)
-    },[])
+    },[auth.authenticated])
 
     return loading ? <div className='text-center'>Loading...</div>: <SignUpForm onSignUp={auth.signUp}/>
 
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
     return {
         props: {}
     }

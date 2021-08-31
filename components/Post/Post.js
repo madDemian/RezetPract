@@ -3,8 +3,7 @@ import EditForm from "../EditForm";
 import Dropdown from "../Layout/Dropdown";
 import Link from 'next/link'
 
-
-export function Post({onDelete,onEdit, userAuthed,post}){
+export function  Post({onDelete,onEdit, userAuthed,post}){
     const [editMode, setEditMode] = useState(false)
 
     const onCancel = () =>{
@@ -20,7 +19,7 @@ export function Post({onDelete,onEdit, userAuthed,post}){
                   onEdit={(content) => {
             setEditMode(false)
             onEdit(content, post.id)
-        }} content={post.content} id={post.id}/>
+        }} content={post.content}/>
     ) : (
         <>{post.content}</>
     )
@@ -34,7 +33,7 @@ export function Post({onDelete,onEdit, userAuthed,post}){
                     <div className='flex mb-4'>
                         <img className="w-12 h-12 rounded-full" src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg'/>
                         <div className=" ml-2 mt-0.5">
-                            <Link href={'/profile/'+ post.user.id}>
+                            <Link href={'/profile/'+ post.user.user_name}>
                                 <a><span className="block font-medium text-base leading-snug text-black dark:text-gray-100">{post.user.first_name+' '+post.user.last_name}</span></a>
                             </Link>
                             <span className="block text-sm text-gray-500 dark:text-gray-400 font-light leading-snug">{post.created_at}</span>

@@ -37,7 +37,7 @@ export default function IconProfile({onSignOut,user}) {
                                             className={`${
                                                 active ? 'bg-gray-400 text-white' : 'text-gray-900'
                                             } group flex rounded-md items-center w-full px-0 py-0 text-sm`}
-                                            onClick={()=>{router.push(`/profile/${user.id}`)}}
+                                            onClick={()=>{router.push(`/profile/${user.user_name}`)}}
                                         >
                                 {active ? (
                                     <ProfileActiveIcon
