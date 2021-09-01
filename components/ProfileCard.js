@@ -1,4 +1,4 @@
-const ProfileCard = ({user}) => {
+function ProfileCard({user}){
     return (
         <div className="md:w-3/12 lg:w-1/2 mx-auto">
             <div>

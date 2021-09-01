@@ -20,7 +20,7 @@ export default function SignUp(){
 
 }
 
-export async function getStaticProps() {
+async function getStaticProps() {
     return {
         props: {}
     }

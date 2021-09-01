@@ -6,10 +6,7 @@ function SignInForm({onSignIn}){
     const router = useRouter()
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
-    const formInput = {
-        email:email,
-        password:password
-    }
+
     return(
         <div>
             <div className={classes.container}>
@@ -18,7 +15,10 @@ function SignInForm({onSignIn}){
                 </div>
                 <form onSubmit={(e)=>{
                     e.preventDefault()
-                    onSignIn(formInput)
+                    onSignIn({
+                        email,
+                        password
+                    })
                 }}>
                     <div className={classes.login}>
                         <label className={classes.inputEmailDescr}>

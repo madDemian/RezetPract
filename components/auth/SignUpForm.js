@@ -12,15 +12,6 @@ function SignUpForm({onSignUp}){
     const [password,setPassword] = useState('')
     const [passwordConfirmation,setPasswordConfirmation] = useState('')
 
-    const inputForm = {
-        first_name:firstName,
-        last_name:lastName,
-        user_name:userName,
-        email:email,
-        password:password,
-        password_confirmation:passwordConfirmation
-    }
-
     return (
         <div>
             <div className={classes.container}>
@@ -29,7 +20,14 @@ function SignUpForm({onSignUp}){
                 </div>
                 <form onSubmit={(e)=>{
                     e.preventDefault()
-                    onSignUp(inputForm)
+                    onSignUp({
+                        first_name:firstName,
+                        last_name:lastName,
+                        user_name:userName,
+                        email,
+                        password,
+                        password_confirmation:passwordConfirmation
+                    })
                 }}>
                     <div className={classes.signUp}>
                         <label className={classes.inputFieldsDescr}>

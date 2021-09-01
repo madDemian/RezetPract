@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const Navbar = () => {
+function Navbar(){
 
     return (
         <div className="fixed dark:bg-gray-800">

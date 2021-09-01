@@ -1,7 +1,7 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 
-export default function Dropdown({onDelete,id,showEditMode}) {
+export default function Dropdown({onDelete,showEditMode}) {
     return (
         <div >
             <Menu as="div" className="relative inline-block text-left">
@@ -53,7 +53,7 @@ export default function Dropdown({onDelete,id,showEditMode}) {
                                         className={`${
                                             active ? 'bg-gray-400 text-white' : 'text-gray-900'
                                         } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                                        onClick={()=>(onDelete(id))}
+                                        onClick={onDelete}
                                     >
                                         {active ? (
                                             <DeleteActiveIcon

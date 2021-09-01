@@ -1,25 +1,25 @@
 import Navbar from "./Navbar";
-import IconProfile from "./IconProfile";
-import RegistrationLoginWindow from "../auth/RegistrationLoginWindow";
 import Logo from "./Logo";
-import {useContext, useEffect, useState} from "react";
+import {useContext, useEffect} from "react";
 import {AuthContext} from "../../context/AuthContext";
+import UserPanel from "./UserPanel";
+import BottomBar from "../auth/BottomBar";
 
 function MainLayout({children}) {
     const auth = useContext(AuthContext)
-    const [authed, setAuthed] = useState(false)
+
 
     useEffect(() => {
         if (auth.authenticated) {
-            setAuthed(true)
+            auth.setAuthenticated(true)
         }else{
-            setAuthed(false)
+            auth.setAuthenticated(false)
         }
     }, [auth.authenticated])
 
-    const displayedContent = authed
-        ? <><IconProfile onSignOut={auth.signOut} user={auth.user}/>
-        <Navbar/></> : <RegistrationLoginWindow/>
+    const displayedContent = auth.authenticated
+        ? <><UserPanel onSignOut={auth.signOut} user={auth.user}/>
+        <Navbar/></> : <BottomBar/>
 
     return (
         <div>

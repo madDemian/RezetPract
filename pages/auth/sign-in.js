@@ -21,7 +21,7 @@ export default function SignIn(){
     return  loading ? <div className='text-center'>Loading...</div> : <SignInForm onSignIn={auth.signIn}/>
 }
 
-export async function getStaticProps() {
+async function getStaticProps() {
     return {
         props: {}
     }

@@ -2,7 +2,7 @@ import {Menu, Transition} from '@headlessui/react'
 import {Fragment} from 'react'
 import {useRouter} from "next/router";
 
-export default function IconProfile({onSignOut,user}) {
+export default function UserPanel({onSignOut,user}) {
     const router = useRouter()
 
     return (

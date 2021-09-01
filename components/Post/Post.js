@@ -3,7 +3,7 @@ import EditForm from "../EditForm";
 import Dropdown from "../Layout/Dropdown";
 import Link from 'next/link'
 
-export function  Post({onDelete,onEdit, userAuthed,post}){
+export function  Post({onDelete,onEdit,post,showDropdown}){
     const [editMode, setEditMode] = useState(false)
 
     const onCancel = () =>{
@@ -24,7 +24,7 @@ export function  Post({onDelete,onEdit, userAuthed,post}){
         <>{post.content}</>
     )
 
-    const dropdown = userAuthed?.id === post.user.id && <Dropdown onDelete={onDelete} id={post.id} showEditMode={showEditMode}/>
+    const dropdown = showDropdown && <Dropdown onDelete={()=>{onDelete(post.id)}} showEditMode={showEditMode}/>
 
     return(
         <div className="p-1 dark:bg-gray-900 flex items-center justify-center w-screen">

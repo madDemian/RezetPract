@@ -21,7 +21,7 @@ export default function Home({posts}) {
 
     return (
         <MainLayout>
-            <PostsList  postsList={postsList} onDelete={onDelete} onEdit={onEdit} userAuthed={user}/>
+            <PostsList  postsList={postsList} onDelete={onDelete} onEdit={onEdit} authenticatedUserID={user?.id}/>
         </MainLayout>
     )
 }

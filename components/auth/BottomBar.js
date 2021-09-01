@@ -1,6 +1,6 @@
 import {useRouter} from "next/router";
 
-const RegistrationLoginWindow = () => {
+function BottomBar(){
     const router = useRouter()
 
     return (
@@ -33,4 +33,4 @@ const RegistrationLoginWindow = () => {
     )
 }
 
-export default RegistrationLoginWindow
+export default BottomBar
