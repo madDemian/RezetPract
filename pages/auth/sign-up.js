@@ -3,7 +3,7 @@ import {useRouter} from "next/router";
 import {useState,useEffect,useContext} from "react";
 import {AuthContext} from "../../context/AuthContext";
 
-export default function SignUp(){
+function SignUp(){
 
     const router = useRouter()
     const auth = useContext(AuthContext)
@@ -20,8 +20,4 @@ export default function SignUp(){
 
 }
 
-async function getStaticProps() {
-    return {
-        props: {}
-    }
-}
+export default SignUp

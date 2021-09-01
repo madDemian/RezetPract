@@ -1,57 +1,73 @@
 import {useState} from "react";
 import EditForm from "../EditForm";
-import Dropdown from "../Layout/Dropdown";
+import {LikeTwoTone, MessageTwoTone} from "@ant-design/icons";
+import DropdownMenu from "../Layout/Dropdown";
 import Link from 'next/link'
 
-export function  Post({onDelete,onEdit,post,showDropdown}){
+export function Post({onDelete, onEdit, post, showContol}) {
+
     const [editMode, setEditMode] = useState(false)
 
-    const onCancel = () =>{
+    const onCancel = () => {
         setEditMode(false)
     }
 
-    const showEditMode=()=>{
+    const showEditMode = () => {
         setEditMode(true)
     }
 
-    const displayedContent = editMode ? (
+    const displayedContent = editMode ?
         <EditForm onCancel={onCancel}
                   onEdit={(content) => {
-            setEditMode(false)
-            onEdit(content, post.id)
-        }} content={post.content}/>
-    ) : (
-        <>{post.content}</>
-    )
+                      setEditMode(false)
+                      onEdit(content, post.id)
+                  }} content={post.content}/>
+        : post.content
 
-    const dropdown = showDropdown && <Dropdown onDelete={()=>{onDelete(post.id)}} showEditMode={showEditMode}/>
+    const dropdown = showContol && <DropdownMenu onDelete={() => {
+        onDelete(post.id)
+    }} showEditMode={showEditMode}/>
 
-    return(
-        <div className="p-1 dark:bg-gray-900 flex items-center justify-center w-screen">
-            <div className="px-5 py-4 bg-white dark:bg-gray-800 shadow rounded-lg w-3/6 ">
-                <div className="flex mb-4 justify-between">
-                    <div className='flex mb-4'>
-                        <img className="w-12 h-12 rounded-full" src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg'/>
-                        <div className=" ml-2 mt-0.5">
-                            <Link href={'/profile/'+ post.user.user_name}>
-                                <a><span className="block font-medium text-base leading-snug text-black dark:text-gray-100">{post.user.first_name+' '+post.user.last_name}</span></a>
-                            </Link>
-                            <span className="block text-sm text-gray-500 dark:text-gray-400 font-light leading-snug">{post.created_at}</span>
-                            <span className="block text-sm text-gray-500 dark:text-gray-400 font-light leading-snug">{post.user.email}</span>
-                        </div>
-                    </div>
+    return (
+        <div className='bg-white lg:w-1/2 font-bold p-5 mx-auto border-2 relative '>
+            <div className='flex'>
+                <img className="w-12 h-12 mr-2 rounded-full"
+                     src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg'
+                     alt='profile'/>
+                <span>
+                        <Link href={'/profile/' + post.user.user_name}>
+                            <a className='text-black'>
+                                <span className='font-extrabold mr-2 cursor-pointer'>
+                                    {post.user.first_name + ' ' + post.user.last_name}
+                                </span>
+                            </a>
+                        </Link>
+                        <span className='text-gray-300 space-x-3'>
+                            <span>
+                                   {post.user.user_name}
+                            </span>
+                            <span>
+                                {post.created_at}
+                            </span>
+                        </span>
+                        <p className='font-semibold pt-2'>
+                                {displayedContent}
+                        </p>
+                    </span>
+                <div className='absolute top-2 right-14'>
                     {dropdown}
                 </div>
+            </div>
 
-                <p className="text-gray-800 dark:text-gray-100 leading-snug md:leading-normal">{displayedContent}</p>
-
-                <div className="flex justify-between items-center mt-5">
-                    <div className="flex ">
-                        <span className="ml-1 text-gray-500 dark:text-gray-400 font-light"> Likes 0</span>
-                    </div>
-                    <div className="ml-1 text-gray-500 dark:text-gray-400 font-light">0 comments</div>
+            <div className='flex pl-14 space-x-5'>
+                <div>
+                    <LikeTwoTone/>
+                </div>
+                <div>
+                    <MessageTwoTone/>
                 </div>
             </div>
+
         </div>
     )
 }

@@ -3,7 +3,6 @@ import {useContext, useState} from "react";
 import CreatePostForm from "../../components/Post/CreatePostForm";
 import MainLayout from "../../components/Layout/MainLayout";
 import {AuthContext} from "../../context/AuthContext";
-import ProfileCard from "../../components/ProfileCard";
 import API from '../../axios/api/index'
 
 export default function Profile({posts,userInfo}) {
@@ -26,9 +25,8 @@ export default function Profile({posts,userInfo}) {
     return (
         <>
             <MainLayout>
-                <ProfileCard user={userInfo}/>
                 <CreatePostForm onCreate={onCreate}/>
-                <PostsList postsList={postsList} onDelete={onDelete} onEdit={onEdit} userAuthed={user} />
+                <PostsList postsList={postsList} onDelete={onDelete} onEdit={onEdit} authenticatedUserID={user?.id} />
             </MainLayout>
         </>
     )

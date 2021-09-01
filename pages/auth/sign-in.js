@@ -3,7 +3,7 @@ import {useRouter} from "next/router";
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../context/AuthContext";
 
-export default function SignIn(){
+function SignIn(){
 
     const router = useRouter()
     const auth = useContext(AuthContext)
@@ -16,13 +16,7 @@ export default function SignIn(){
        setLoading(false)
     },[auth.authenticated])
 
-
-
     return  loading ? <div className='text-center'>Loading...</div> : <SignInForm onSignIn={auth.signIn}/>
 }
 
-async function getStaticProps() {
-    return {
-        props: {}
-    }
-}
+export default SignIn
