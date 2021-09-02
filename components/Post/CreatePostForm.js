@@ -9,23 +9,20 @@ function CreatePostForm({onCreate}){
         setContent('')
     }
     return(
-        <div >
-            <div className="bg-gray-50 p-5 md:w-3/12 lg:w-1/2 mx-auto">
+            <div className='bg-white md:w-3/12 lg:w-1/2 font-bold p-5 mx-auto border border-black'>
                 <form onSubmit={onSubmit}>
                     <div className="flex items-center mb-2">
                         <textarea type="text" id="twitter" name="twitter" placeholder="Tweet"
-                                  className="flex-1 py-2 border-b-2 border-gray-400 text-gray-600 placeholder-gray-400"
+                                  className="flex-1 py-2 border border-gray-400 text-gray-600 placeholder-gray-400"
                                   onChange={(event => setContent(event.target.value))}
                                   value={content}
                                   required="required"/>
                     </div>
                     <div className="text-right">
-                        <button className="py-3 px-8 bg-gray-500 text-white font-bold" type="submit">Tweet</button>
+                        <button className="py-3 px-8 bg-blue-500 text-white font-bold" type="submit">Tweet</button>
                     </div>
                 </form>
             </div>
-        </div>
-
     )
 }
 

@@ -1,45 +1,36 @@
-import {useState} from "react";
-import CreatePostForm from "../components/CreatePostForm";
-import apiClient from '../libs/apiClient'
-import PostsList from "../components/PostsList";
+import {useContext, useState} from "react";
+import PostsList from "../components/Post/PostsList";
+import MainLayout from "../components/Layout/MainLayout";
+import {AuthContext} from "../context/AuthContext";
+import API from '../axios/api/index'
 
 export default function Home({posts}) {
-    const [postsList,setPostList] = useState(posts)
-    const onCreate = async(text) =>{
-        const {data:post} = await apiClient.post('posts', {
-            content: text
-        })
-        setPostList([post,...postsList])
-    }
+
+    const [postsList, setPostList] = useState(posts)
+
+    const {user} = useContext(AuthContext)
+
     const onDelete = async (id) => {
-        await apiClient.delete(`posts/${id}`)
-        setPostList(postsList.filter((post)=>post.id !== id))
+        await API.post.delete(id)
+        setPostList(postsList.filter((post) => post.id !== id))
     }
-    const onEdit = async (content,id) => {
-        await apiClient.put(`posts/${id}`, {
-            content: content
-        })
+    const onEdit = async (content, id) => {
+        await API.post.edit(content, id)
         setPostList(postsList.map(post => post.id === id ? {...post, content} : post))
     }
-    const displayedContent = postsList.length ? <PostsList postsList={postsList} onDelete={onDelete} onEdit={onEdit}/> :
-        <p className="p-1 bg-gray-50 dark:bg-gray-900 flex items-center justify-center md:w-3/12 lg:w-1/2 mx-auto">No posts</p>
 
     return (
-        <div>
-            <CreatePostForm onCreate={onCreate}/>
-            <div >
-                {
-                    displayedContent
-                }
-            </div>
-        </div>
+        <MainLayout>
+            <PostsList  postsList={postsList} onDelete={onDelete} onEdit={onEdit} authenticatedUserID={user?.id}/>
+        </MainLayout>
     )
 }
 
-export async function getServerSideProps(context) {
-    const {data:posts} = await apiClient.get('posts')
+export async function getServerSideProps() {
+    const {data: {data: posts}} = await API.post.getAll()
     return {
         props: {posts},
     }
 }
+
 
