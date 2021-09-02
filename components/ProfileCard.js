@@ -15,8 +15,7 @@ function ProfileCard({profileInfo}) {
                      alt='profile'/>
             </div>
             <div>
-                <div
-                    className="relative bottom-24 font-bold ml-2">{profileInfo.first_name + ' ' + profileInfo.last_name}</div>
+                <div className="relative bottom-24 font-bold ml-2">{profileInfo.first_name + ' ' + profileInfo.last_name}</div>
                 <div className="relative bottom-20 font-bold ml-2 text-gray-500">{profileInfo.user_name}</div>
                 <div className="relative bottom-16 font-bold ml-2 text-gray-500">Manchester,UK</div>
                 <div className="flex relative bottom-14 font-bold ml-2 text-gray-500">
