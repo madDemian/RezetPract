@@ -4,8 +4,9 @@ import CreatePostForm from "../../components/Post/CreatePostForm";
 import MainLayout from "../../components/Layout/MainLayout";
 import {AuthContext} from "../../context/AuthContext";
 import API from '../../axios/api/index'
+import ProfileCard from "../../components/ProfileCard";
 
-export default function Profile({posts,userInfo}) {
+export default function Profile({posts,profileInfo}) {
     const [postsList, setPostList] = useState(posts)
     const {user} = useContext(AuthContext)
 
@@ -24,7 +25,8 @@ export default function Profile({posts,userInfo}) {
 
     return (
         <>
-            <MainLayout>
+            <MainLayout title={profileInfo.first_name + ' ' + profileInfo.last_name} numberOfPosts={`${postsList.length} posts`}>
+                <ProfileCard profileInfo={profileInfo}/>
                 <CreatePostForm onCreate={onCreate}/>
                 <PostsList postsList={postsList} onDelete={onDelete} onEdit={onEdit} authenticatedUserID={user?.id} />
             </MainLayout>
@@ -35,8 +37,8 @@ export default function Profile({posts,userInfo}) {
 
 export async function getServerSideProps(context) {
     const {data: {data:posts}} = await API.post.getAuthor(context.query.user_name)
-    const {data:{data: userInfo}} = await API.user.getUser(context.query.user_name)
+    const {data:{data: profileInfo}} = await API.user.getUser(context.query.user_name)
     return {
-        props: {posts,userInfo}
+        props: {posts,profileInfo}
     }
 }

@@ -6,7 +6,7 @@ import UserPanel from "./UserPanel";
 import BottomBar from "../auth/BottomBar";
 import HomeBar from "./HomeBar";
 
-function MainLayout({children}) {
+function MainLayout({children,title,numberOfPosts}) {
     const auth = useContext(AuthContext)
     const [display,setDisplay] = useState(false)
 
@@ -18,23 +18,21 @@ function MainLayout({children}) {
         }
     }, [auth.authenticated])
 
-    // const displayedContent =authed
-    //     ? <><UserPanel onSignOut={auth.signOut} user={auth.user}/>
-    //     <Navbar/></> : <BottomBar/>
+    useEffect(()=>{},[])
 
     const displayContent = display?
-        <>
+        <div>
             <Navbar/>
             <UserPanel onSignOut={auth.signOut} user={auth.user}/>
-        </>:
-        <>
+        </div>:
+        <div>
             <HomeBar/>
             <BottomBar/>
-        </>
+        </div>
 
     return (
         <div>
-            <Logo/>
+            <Logo title={title} numberOfPosts={numberOfPosts}/>
             {displayContent}
             {children}
         </div>

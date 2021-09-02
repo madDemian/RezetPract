@@ -1,37 +1,39 @@
-function ProfileCard({user}){
+import pic from '../assets/pictures/home_overlay_bg-2020.jpg'
+import Image from 'next/image'
+import {Button} from 'antd';
+
+
+function ProfileCard({profileInfo}) {
     return (
-        <div className="md:w-3/12 lg:w-1/2 mx-auto">
+        <div className=' md:w-3/12 lg:w-1/2 mx-auto border-black border'>
+            <div className='w-full h-1/2'>
+                <Image className='w-full h-1/2 ' src={pic}/>
+            </div>
+            <div className='relative left-96 bottom-16'>
+                <img className=" w-46 h-32 mr-2 rounded-full"
+                     src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg'
+                     alt='profile'/>
+            </div>
             <div>
-                <div className="rounded-lg shadow-lg bg-gray-600 w-full flex p-3 antialiased"
-                     style={{
-                         backgroundSize: "cover",
-                         backgroundBlendMode: "multiply"
-                     }}>
-                    <div className="md:w-1/4 w-full">
-                        <img className="rounded-lg shadow-lg antialiased"
-                             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"/>
-                        <div className='flex ml-0'>
-                            <button
-                                className='mr-2 bg-gray-400 text-white  text-gray-900
-                             group flex rounded-md items-center px-2 py-2 text-sm hover:bg-gray-500 '>Follow
-                            </button>
-                            <button
-                                className='bg-gray-400 text-white  text-gray-900
-                             group flex rounded-md items-center px-2 py-2 text-sm hover:bg-gray-500 '>Message
-                            </button>
-                        </div>
+                <div
+                    className="relative bottom-24 font-bold ml-2">{profileInfo.first_name + ' ' + profileInfo.last_name}</div>
+                <div className="relative bottom-20 font-bold ml-2 text-gray-500">{profileInfo.user_name}</div>
+                <div className="relative bottom-16 font-bold ml-2 text-gray-500">Manchester,UK</div>
+                <div className="flex relative bottom-14 font-bold ml-2 text-gray-500">
+                    <div>
+                        Followers 100
                     </div>
-                    <div className="md:w-2/3 w-full -px-20 flex flex-row flex-wrap">
-                        <div className="w-full text-right text-gray-700 font-semibold relative pt-3 md:pt-0">
-                            <div className="text-2xl text-white leading-tight">{user.first_name+' '+user.last_name}</div>
-                            <div className="text-normal text-gray-300 hover:text-gray-400 cursor-pointer">asd<span
-                                className="border-gray-500 pb-1">{user.user_name}</span></div>
-                            <div className="text-sm text-gray-300 hover:text-gray-400 cursor-pointer"><span
-                                className="border-gray-500 pb-1">Manchester,UK</span></div>
-                            <div
-                                className="flex text-sm text-gray-300  md:absolute pt-3 md:pt-0 bottom-0 right-0">
-                                <p className='mr-3 hover:text-gray-400 cursor-pointer'>Following 1000</p><p className='hover:text-gray-400 cursor-pointer'> Followers 1000</p>
-                            </div>
+                    <div>
+                        Followed 100
+                    </div>
+                </div>
+                <div className='relative'>
+                    <div className="flex absolute bottom-44 right-14 space-x-3  ">
+                        <div>
+                            <Button type="primary">Message</Button>
+                        </div>
+                        <div>
+                            <Button type="primary">Follow</Button>
                         </div>
                     </div>
                 </div>

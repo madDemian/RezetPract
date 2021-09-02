@@ -6,7 +6,7 @@ import Link from 'next/link'
 function HomeBar(){
     return(
         <div className='fixed font-extrabold pl-64 '>
-            <Menu>
+            <Menu style={{border:'none'}}>
                 <Menu.Item key="1" icon={<HomeOutlined />}>
                     <Link href='/'>
                         <a>Home</a>

@@ -29,7 +29,7 @@ export function Post({onDelete, onEdit, post, showContol}) {
     }} showEditMode={showEditMode}/>
 
     return (
-        <div className='bg-white lg:w-1/2 font-bold p-5 mx-auto border-2 relative '>
+        <div className='bg-white lg:w-1/2 font-bold p-5 mx-auto border border-black relative '>
             <div className='flex'>
                 <img className="w-12 h-12 mr-2 rounded-full"
                      src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg'
@@ -61,10 +61,10 @@ export function Post({onDelete, onEdit, post, showContol}) {
 
             <div className='flex pl-14 space-x-5'>
                 <div>
-                    <LikeTwoTone/>
+                    <LikeTwoTone/> 13
                 </div>
                 <div>
-                    <MessageTwoTone/>
+                    <MessageTwoTone/> 14
                 </div>
             </div>
 

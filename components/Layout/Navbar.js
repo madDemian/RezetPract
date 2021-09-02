@@ -5,8 +5,8 @@ import Link from "next/link";
 
 function Navbar(){
     return (
-        <div className='fixed font-extrabold pl-64 '>
-            <Menu>
+        <div className=' md:w-1/8 lg:w-1/8 fixed font-extrabold pl-64 '>
+            <Menu style={{border:'none'}}>
                 <Menu.Item key="1" icon={<HomeOutlined />}>
                     <Link href='/'>
                         <a>Home</a>
