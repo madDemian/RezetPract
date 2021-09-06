@@ -28,9 +28,9 @@ function UserPanel({user,onSignOut}) {
                     alt="User"
                 />
             </Dropdown>
-            <div className='font-bold relative right-8 mt-2 '>
-                <div>{user?.first_name + ' ' + user?.last_name}</div>
-                <div className=' pl-5 text-gray-500'>{user?.user_name}</div>
+            <div className='relative right-7 text-center font-bold mt-1'>
+                <div className='text-center'>{user?.first_name + ' ' + user?.last_name}</div>
+                <div className='text-center text-gray-500'>{user?.user_name}</div>
             </div>
         </div>
     )

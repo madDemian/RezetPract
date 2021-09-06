@@ -7,20 +7,31 @@ export function useAuth() {
     const [user, setUser] = useState(null)
 
     const fetchProfile = async () => {
-        const {data:{data:currentUser}} = await API.auth.me()
+        const {data: {data: currentUser}} = await API.auth.me()
         setUser(currentUser)
     }
 
     const signIn = async (credentials) => {
-        const {data: {token}} = await API.auth.signIn(credentials)
-        cookie.set('token', token)
-        setAuthenticated(true)
+        try{
+            const {data: {token}} = await API.auth.signIn(credentials)
+            cookie.set('token', token)
+            setAuthenticated(true)
+        }catch (e) {
+            console.log(e)
+            return e.message
+        }
+
     }
 
     const signUp = async (credentials) => {
-        const {data: {token}} = await API.auth.signUp(credentials)
-        cookie.set('token', token)
-        setAuthenticated(true)
+        try{
+            const {data: {token}} = await API.auth.signUp(credentials)
+            cookie.set('token', token)
+            setAuthenticated(true)
+        }catch (e){
+            console.log(e)
+            return e.message
+        }
     }
 
     const signOut = async () => {
